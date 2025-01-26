@@ -1,0 +1,20 @@
+[package]
+name = "trigger-contract"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cosmwasm-std = {workspace = true}
+anyhow = {workspace = true} 
+cw-storage-plus = {workspace = true} 
+cw2 = {workspace = true} 
+cw-utils = {workspace = true} 
+cosmwasm-schema = {workspace = true}
+hex = {workspace = true}

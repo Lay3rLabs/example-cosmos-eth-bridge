@@ -1,0 +1,33 @@
+[package]
+name = "bridge"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cosmwasm-std = {workspace = true}
+anyhow = {workspace = true} 
+cw-storage-plus = {workspace = true} 
+cw2 = {workspace = true} 
+cosmwasm-schema = {workspace = true}
+hex = {workspace = true}
+wit-bindgen-rt = {workspace = true}
+
+[package.metadata.component]
+package = "component:bridge"
+
+[package.metadata.component.target]
+world = "layer-trigger-world"
+
+[package.metadata.component.target.dependencies]
+"wasi:cli" = { path = "wit/deps/wasi-cli-0.2.0" }
+"wasi:http" = { path = "wit/deps/wasi-http-0.2.0" }
+"wasi:clocks" = { path = "wit/deps/wasi-clocks-0.2.0" }
+"wasi:io" = { path = "wit/deps/wasi-io-0.2.0" }
+"wasi:random" = { path = "wit/deps/wasi-random-0.2.0" }

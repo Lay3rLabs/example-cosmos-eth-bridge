@@ -1,0 +1,18 @@
+data = "./.wavs-data/wavs"
+active_trigger_chains = ["anvil", "wasmd"]
+max_wasm_fuel = 1_000_000
+
+# Anvil defaults
+[chains.eth.anvil]
+chain_id = "31337"
+ws_endpoint = "ws://localhost:8545"
+http_endpoint = "http://localhost:8545"
+
+# Set in backend.just
+[chains.cosmos.wasmd]
+chain_id = "layer-wasmd"
+bech32_prefix = "wasm"
+gas_denom = "ulayer"
+rpc_endpoint = "http://localhost:26657"
+grpc_endpoint = "http://localhost:9090"
+gas_price = 0.025
