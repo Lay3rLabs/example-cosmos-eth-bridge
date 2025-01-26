@@ -3,6 +3,6 @@ pragma solidity ^0.8.0;
 
 struct BridgeDeposit {
     string sender;
-    string recipient;
+    address recipient;
     uint256 amount;
 }

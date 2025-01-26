@@ -15,12 +15,10 @@ contract Submit is ERC20 {
     function handleAddPayload(bytes calldata data, bytes calldata) external {
         BridgeDeposit memory deposit = abi.decode(data, (BridgeDeposit));
 
-        address recipient = address(bytes20(bytes(deposit.recipient)));
-
-        _mint(recipient, deposit.amount);
+        _mint(deposit.recipient, deposit.amount);
 
         depositsBySender[deposit.sender] += deposit.amount;
 
-        emit Deposit(deposit.sender, recipient, deposit.amount);
+        emit Deposit(deposit.sender, deposit.recipient, deposit.amount);
     }
 }

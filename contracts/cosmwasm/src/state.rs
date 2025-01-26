@@ -11,6 +11,7 @@ const DEPOSITS: Map<u64, Deposit> = Map::new("deposits");
 pub struct Deposit {
     pub sender: Addr,
     pub amount: Uint128,
+    pub recipient: String,
 }
 
 pub fn get_deposit(store: &dyn Storage, id: Uint64) -> Result<Deposit> {
@@ -36,6 +37,7 @@ pub fn get_deposits(
                 id: id.into(),
                 sender: deposit.sender,
                 amount: deposit.amount,
+                recipient: deposit.recipient
             })
             .map_err(Into::into)
         })
@@ -44,14 +46,14 @@ pub fn get_deposits(
     Ok(DepositsResponse { deposits })
 }
 
-pub fn push_deposit(store: &mut dyn Storage, sender: Addr, amount: Uint128) -> Result<Uint64> {
+pub fn push_deposit(store: &mut dyn Storage, sender: Addr, amount: Uint128, recipient: String) -> Result<Uint64> {
     let next_index = DEPOSITS
         .keys(store, None, None, Order::Descending)
         .next()
         .unwrap_or(Ok(0))?
         + 1;
 
-    DEPOSITS.save(store, next_index, &Deposit { sender, amount })?;
+    DEPOSITS.save(store, next_index, &Deposit { sender, amount, recipient })?;
 
     Ok(next_index.into())
 }

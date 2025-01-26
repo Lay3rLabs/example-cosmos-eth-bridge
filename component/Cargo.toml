@@ -21,6 +21,7 @@ hex = {workspace = true}
 wit-bindgen-rt = {workspace = true}
 alloy-sol-macro = {workspace = true}
 alloy-sol-types = {workspace = true}
+alloy-primitives = {workspace = true}
 
 [package.metadata.component]
 package = "component:bridge"

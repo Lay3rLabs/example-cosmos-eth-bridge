@@ -24,6 +24,7 @@ pub enum QueryMsg {
 pub struct DepositWithId {
     pub id: Uint64,
     pub sender: Addr,
+    pub recipient: String,
     pub amount: Uint128,
 }
 

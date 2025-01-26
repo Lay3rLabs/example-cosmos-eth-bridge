@@ -5,8 +5,7 @@ pub type TriggerAction = lay3r::avs::layer_types::TriggerAction;
 #[doc(hidden)]
 #[allow(non_snake_case)]
 pub unsafe fn _export_run_cabi<T: Guest>(arg0: *mut u8) -> *mut u8 {
-    #[cfg(target_arch = "wasm32")]
-    _rt::run_ctors_once();
+    #[cfg(target_arch = "wasm32")] _rt::run_ctors_once();
     let l0 = *arg0.add(0).cast::<*mut u8>();
     let l1 = *arg0.add(4).cast::<usize>();
     let len2 = l1;
@@ -585,8 +584,11 @@ pub mod host {
                                         let l7 = *ptr1.add(16).cast::<*mut u8>();
                                         let l8 = *ptr1.add(20).cast::<usize>();
                                         let len9 = l8;
-                                        let bytes9 =
-                                            _rt::Vec::from_raw_parts(l7.cast(), len9, len9);
+                                        let bytes9 = _rt::Vec::from_raw_parts(
+                                            l7.cast(),
+                                            len9,
+                                            len9,
+                                        );
                                         _rt::string_lift(bytes9)
                                     };
                                     Some(e)
@@ -600,8 +602,11 @@ pub mod host {
                                         let l11 = *ptr1.add(28).cast::<*mut u8>();
                                         let l12 = *ptr1.add(32).cast::<usize>();
                                         let len13 = l12;
-                                        let bytes13 =
-                                            _rt::Vec::from_raw_parts(l11.cast(), len13, len13);
+                                        let bytes13 = _rt::Vec::from_raw_parts(
+                                            l11.cast(),
+                                            len13,
+                                            len13,
+                                        );
                                         _rt::string_lift(bytes13)
                                     };
                                     Some(e)
@@ -667,8 +672,11 @@ pub mod host {
                                         let l7 = *ptr1.add(16).cast::<*mut u8>();
                                         let l8 = *ptr1.add(20).cast::<usize>();
                                         let len9 = l8;
-                                        let bytes9 =
-                                            _rt::Vec::from_raw_parts(l7.cast(), len9, len9);
+                                        let bytes9 = _rt::Vec::from_raw_parts(
+                                            l7.cast(),
+                                            len9,
+                                            len9,
+                                        );
                                         _rt::string_lift(bytes9)
                                     };
                                     Some(e)
@@ -682,8 +690,11 @@ pub mod host {
                                         let l11 = *ptr1.add(28).cast::<*mut u8>();
                                         let l12 = *ptr1.add(32).cast::<usize>();
                                         let len13 = l12;
-                                        let bytes13 =
-                                            _rt::Vec::from_raw_parts(l11.cast(), len13, len13);
+                                        let bytes13 = _rt::Vec::from_raw_parts(
+                                            l11.cast(),
+                                            len13,
+                                            len13,
+                                        );
                                         _rt::string_lift(bytes13)
                                     };
                                     Some(e)
@@ -697,8 +708,11 @@ pub mod host {
                                         let l15 = *ptr1.add(40).cast::<*mut u8>();
                                         let l16 = *ptr1.add(44).cast::<usize>();
                                         let len17 = l16;
-                                        let bytes17 =
-                                            _rt::Vec::from_raw_parts(l15.cast(), len17, len17);
+                                        let bytes17 = _rt::Vec::from_raw_parts(
+                                            l15.cast(),
+                                            len17,
+                                            len17,
+                                        );
                                         _rt::string_lift(bytes17)
                                     };
                                     Some(e)

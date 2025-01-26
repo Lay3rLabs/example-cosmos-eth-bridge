@@ -38,11 +38,10 @@ impl Guest for Component {
                         (Some(amount), Some(sender), Some(recipient)) => {
                             let response = BridgeDeposit {
                                 amount: amount
-                                    .to_string()
                                     .parse()
                                     .map_err(|e| format!("Failed to parse amount: {}", e))?,
                                 sender,
-                                recipient,
+                                recipient: alloy_primitives::Address::parse_checksummed(recipient, None).map_err(|e| format!("Failed to parse recipient: {}", e))?,
                             };
 
                             return Ok(response.abi_encode());

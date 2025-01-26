@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use anyhow::{anyhow, Context, Result};
 use layer_climb::prelude::*;
-use trigger_contract::entry::execute::ExecuteMsg;
+use trigger_contract::entry::{execute::ExecuteMsg, query::{DepositsResponse, QueryMsg}};
 
 use crate::WORKSPACE_PATH;
 
@@ -31,6 +31,9 @@ pub async fn run(client: SigningClient, recipient: alloy_primitives::Address) ->
         .await?;
 
     tracing::info!("Sent! Tx hash: {}", tx.txhash);
+
+    let resp: DepositsResponse = client.querier.contract_smart(&meta.trigger_address, &QueryMsg::Deposits { after_id: None, order: None }).await?;
+    tracing::info!("Deposits: {:#?}", resp.deposits);
 
     Ok(())
 }

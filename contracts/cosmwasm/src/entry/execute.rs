@@ -25,7 +25,7 @@ pub fn execute(deps: DepsMut, _env: Env, info: MessageInfo, msg: ExecuteMsg) -> 
                 })
                 .ok_or_else(|| anyhow!("no funds"))?;
 
-            let id = push_deposit(deps.storage, info.sender.clone(), amount)?;
+            let id = push_deposit(deps.storage, info.sender.clone(), amount, recipient.clone())?;
 
             Ok(Response::default().add_event(NewDepositEvent {
                 id,

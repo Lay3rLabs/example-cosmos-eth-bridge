@@ -1,5 +1,5 @@
 data = "./.wavs-data/wavs"
-active_trigger_chains = ["anvil", "wasmd"]
+active_trigger_chains = ["wasmd"]
 max_wasm_fuel = 1_000_000
 
 # Anvil defaults

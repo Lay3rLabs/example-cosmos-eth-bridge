@@ -12,5 +12,5 @@ bridge-check-funds:
 
 _bridge-check-funds ERC20_ADDR:
   @echo checking balance of "{{BRIDGE_RECIPIENT}}" on "{{ERC20_ADDR}}"
-  cast call {{ERC20_ADDR}} "balanceOf(address)(uint256)" {{BRIDGE_RECIPIENT}} --rpc-url http://localhost:8545  
+  cast call {{ERC20_ADDR}} "balanceOf(address)" "{{BRIDGE_RECIPIENT}}" --rpc-url http://localhost:8545  
   
