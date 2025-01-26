@@ -2,21 +2,21 @@ mod args;
 mod deploy;
 mod deposit;
 
-use std::{collections::BTreeMap, path::PathBuf, sync::LazyLock};
-use anyhow::{Result, anyhow};
+use anyhow::{anyhow, Result};
 use args::Command;
 use clap::Parser;
+use layer_climb::prelude::*;
 use layer_climb::signing::SigningClient;
 use serde::{Deserialize, Serialize};
+use std::{collections::BTreeMap, path::PathBuf, sync::LazyLock};
 use tracing::level_filters::LevelFilter;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, Layer};
-use layer_climb::prelude::*;
 
 // Corresponds to COSMOS_ADDRESS in `vars.just`
 // this is just some randomly generated address
 const COSMOS_MNEMONIC:&str = "couch surprise bamboo what penalty farm ocean company basic hire inject oak emerge shed dish round collect boat error reunion size holiday cup skill";
 
-pub static WORKSPACE_PATH:LazyLock<PathBuf> = LazyLock::new(|| {
+pub static WORKSPACE_PATH: LazyLock<PathBuf> = LazyLock::new(|| {
     PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR should be set"))
         .parent()
         .unwrap()
@@ -34,7 +34,7 @@ async fn main() -> Result<()> {
                     LevelFilter::DEBUG
                 } else {
                     LevelFilter::INFO
-                })
+                }),
         )
         .try_init()
         .unwrap();
@@ -42,18 +42,30 @@ async fn main() -> Result<()> {
     let command = Command::parse();
 
     let config_path = WORKSPACE_PATH.join("config").join("wavs.toml");
-    let wavs_config:WavsConfig = toml::from_str(&std::fs::read_to_string(config_path).unwrap()).unwrap();
+    let wavs_config: WavsConfig =
+        toml::from_str(&std::fs::read_to_string(config_path).unwrap()).unwrap();
 
     let signer = KeySigner::new_mnemonic_str(COSMOS_MNEMONIC, None)?;
     let signing_client = SigningClient::new(
-        wavs_config.chains.cosmos.get("wasmd").unwrap().clone().into(),
+        wavs_config
+            .chains
+            .cosmos
+            .get("wasmd")
+            .unwrap()
+            .clone()
+            .into(),
         signer,
-        None
-    ).await?;
+        None,
+    )
+    .await?;
 
     tracing::info!("Client address: {}", signing_client.addr);
 
-    let balance = signing_client.querier.balance(signing_client.addr.clone(), None).await?.unwrap_or_default();
+    let balance = signing_client
+        .querier
+        .balance(signing_client.addr.clone(), None)
+        .await?
+        .unwrap_or_default();
 
     if balance == 0 {
         return Err(anyhow!("not enough funds"));
@@ -62,19 +74,18 @@ async fn main() -> Result<()> {
     match command {
         Command::Deploy {} => {
             deploy::run(signing_client).await?;
-        },
-        Command::Deposit {} => {
-            deposit::run(signing_client).await?;
-        },
+        }
+        Command::Deposit { recipient } => {
+            deposit::run(signing_client, recipient).await?;
+        }
     }
 
     Ok(())
 }
 
-
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct WavsConfig {
-    pub chains: ChainConfigs
+    pub chains: ChainConfigs,
 }
 
 #[derive(Debug, Deserialize, Serialize, Clone, Default)]

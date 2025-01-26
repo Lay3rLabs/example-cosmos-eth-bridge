@@ -25,8 +25,13 @@ SOLIDITY_OUT_DIR := ".build-artifacts/ethereum-contracts"
 WASI_OUT_DIR := ".build-artifacts/wasi-components" 
 
 # Services
+
 TRIGGER_ADDRESS_FILEPATH := ".build-artifacts/cosmos-contracts/trigger.address"
 SUBMIT_HANDLER_ADDRESS_FILEPATH := ".build-artifacts/ethereum-contracts/submit-handler.address"
 SUBMIT_MANAGER_ADDRESS_FILEPATH := ".build-artifacts/ethereum-contracts/submit-manager.address"
 SERVICE_ID_FILEPATH := ".build-artifacts/service.id"
 TRIGGER_EVENT_NAME := "new-deposit"
+
+# BRIDGE
+
+BRIDGE_RECIPIENT := "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266" # Corresponds to ETHEREUM_MNEMONIC

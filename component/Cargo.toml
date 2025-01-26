@@ -11,6 +11,7 @@ description.workspace = true
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+trigger-contract = {workspace = true}
 cosmwasm-std = {workspace = true}
 anyhow = {workspace = true} 
 cw-storage-plus = {workspace = true} 
@@ -18,6 +19,8 @@ cw2 = {workspace = true}
 cosmwasm-schema = {workspace = true}
 hex = {workspace = true}
 wit-bindgen-rt = {workspace = true}
+alloy-sol-macro = {workspace = true}
+alloy-sol-types = {workspace = true}
 
 [package.metadata.component]
 package = "component:bridge"

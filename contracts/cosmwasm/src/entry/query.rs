@@ -1,8 +1,10 @@
 use anyhow::Result;
 use cosmwasm_schema::{cw_serde, QueryResponses};
-use cosmwasm_std::{Addr, Uint128, entry_point, to_json_binary, Deps, Env, Order, QueryResponse, Uint64};
+use cosmwasm_std::{
+    entry_point, to_json_binary, Addr, Deps, Env, Order, QueryResponse, Uint128, Uint64,
+};
 
-use crate::state::{get_deposit,get_deposits};
+use crate::state::{get_deposit, get_deposits};
 
 #[cw_serde]
 #[derive(QueryResponses)]
@@ -29,7 +31,6 @@ pub struct DepositWithId {
 pub struct DepositsResponse {
     pub deposits: Vec<DepositWithId>,
 }
-
 
 #[entry_point]
 pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> Result<QueryResponse> {

@@ -9,6 +9,9 @@ target/
 out/
 cache/
 
+# Node
+node_modules/
+
 # Secrets
 .env
 

@@ -1,6 +1,6 @@
 use anyhow::Result;
 use cosmwasm_schema::cw_serde;
-use cosmwasm_std::{Order, Storage, Uint64, Addr, Uint128};
+use cosmwasm_std::{Addr, Order, Storage, Uint128, Uint64};
 use cw_storage_plus::{Bound, Map};
 
 use crate::entry::query::{DepositWithId, DepositsResponse};
@@ -45,13 +45,13 @@ pub fn get_deposits(
 }
 
 pub fn push_deposit(store: &mut dyn Storage, sender: Addr, amount: Uint128) -> Result<Uint64> {
-    let next_index = DEPOSITS 
+    let next_index = DEPOSITS
         .keys(store, None, None, Order::Descending)
         .next()
         .unwrap_or(Ok(0))?
         + 1;
 
-    DEPOSITS.save(store, next_index, &Deposit{ sender, amount})?;
+    DEPOSITS.save(store, next_index, &Deposit { sender, amount })?;
 
     Ok(next_index.into())
 }

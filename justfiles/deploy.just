@@ -44,7 +44,7 @@ _deploy-service-inner TRIGGER_ADDRESS SUBMIT_ADDRESS:
 _deploy-service-inner-cmd TRIGGER_ADDRESS SUBMIT_ADDRESS:
     @echo ""
     @echo "*** deploying service at trigger addess {{TRIGGER_ADDRESS}} and submit address {{SUBMIT_ADDRESS}} ***"
-    wavs-cli deploy-service \
+    @wavs-cli deploy-service \
         --home ./config \
         --trigger-chain wasmd \
         --trigger cosmos-contract-event \

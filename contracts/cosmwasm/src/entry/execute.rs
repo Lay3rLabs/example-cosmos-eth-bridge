@@ -6,20 +6,32 @@ use crate::{event::NewDepositEvent, state::push_deposit};
 
 #[cw_serde]
 pub enum ExecuteMsg {
-    Deposit { },
+    Deposit { recipient: String },
 }
 
 #[entry_point]
 pub fn execute(deps: DepsMut, _env: Env, info: MessageInfo, msg: ExecuteMsg) -> Result<Response> {
     match msg {
-        ExecuteMsg::Deposit { } => {
-            let amount = cw_utils::must_pay(&info, "ulayer").map_err(|e| anyhow!("{:?}", e))?;
+        ExecuteMsg::Deposit { recipient } => {
+            let amount = info
+                .funds
+                .iter()
+                .find_map(|coin| {
+                    if !coin.amount.is_zero() {
+                        Some(coin.amount)
+                    } else {
+                        None
+                    }
+                })
+                .ok_or_else(|| anyhow!("no funds"))?;
+
             let id = push_deposit(deps.storage, info.sender.clone(), amount)?;
 
             Ok(Response::default().add_event(NewDepositEvent {
                 id,
                 sender: info.sender,
-                amount
+                amount,
+                recipient,
             }))
         }
     }
