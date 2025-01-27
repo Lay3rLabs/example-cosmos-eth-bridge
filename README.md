@@ -73,7 +73,7 @@ just stop-backend
 
 # Implementation notes
 
-Almost everyting is in the [justfiles](justfiles)
+Almost everyting is in the [justfiles](justfiles) (using `wavs-cli` and `forge` to do the heavy lifting).
 A minimal cosmos client is in [cosmos-client](cosmos-client)
 
 Overall flow when running `just bridge` is:
@@ -85,5 +85,5 @@ Overall flow when running `just bridge` is:
 5. (component) extracts the amount and recipient from the event data
 6. (component) encodes the info into an ethereum-friendly type (shared at compiletime w/ alloy sol! macro)
 7. (wavs) signs this output from the component, submits it to eigenlayer contract
-8. (ethereum: LayerServiceManager) verifies the operator and signature, calls LayerServiceHandler
-9. (ethereum: LayerServiceHandler + ERC20) extracts the data, mints tokens
+8. (ethereum: Eigenlayer-aware LayerServiceManager) verifies the operator and signature, calls LayerServiceHandler
+9. (ethereum: Vanilla LayerServiceHandler + ERC20) extracts the data, mints tokens
