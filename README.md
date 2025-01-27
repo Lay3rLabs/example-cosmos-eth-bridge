@@ -4,9 +4,13 @@ _Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/W
 
 ## One-time setup
 
-1. `npm install`
+1. **install the openzeppelin contract dependencies**
 
-To install the openzeppelin contract dependencies
+```bash
+npm install
+```
+
+
 
 2. **Follow the [Native Install](https://github.com/Lay3rLabs/WAVS/blob/main/docs/QUICKSTART.md#running-natively) instructions on WAVS if you haven't done so already.**
 
