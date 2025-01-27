@@ -10,14 +10,12 @@ _Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/W
 npm install
 ```
 
-
-
 2. **Follow the [Native Install](https://github.com/Lay3rLabs/WAVS/blob/main/docs/QUICKSTART.md#running-natively) instructions on WAVS if you haven't done so already.**
 
 Short version:
 
 ```bash
-git clone https://github.com/Lay3rLabs/WAVS.git ~/WAVS
+git clone -b deploy-eigen-service-manager https://github.com/Lay3rLabs/WAVS.git ~/WAVS
 
 cd ~/WAVS && just install-native ~/wavs-config ~/wavs-data
 ```
