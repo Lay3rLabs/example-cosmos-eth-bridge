@@ -37,7 +37,7 @@ pub fn get_deposits(
                 id: id.into(),
                 sender: deposit.sender,
                 amount: deposit.amount,
-                recipient: deposit.recipient
+                recipient: deposit.recipient,
             })
             .map_err(Into::into)
         })
@@ -46,14 +46,27 @@ pub fn get_deposits(
     Ok(DepositsResponse { deposits })
 }
 
-pub fn push_deposit(store: &mut dyn Storage, sender: Addr, amount: Uint128, recipient: String) -> Result<Uint64> {
+pub fn push_deposit(
+    store: &mut dyn Storage,
+    sender: Addr,
+    amount: Uint128,
+    recipient: String,
+) -> Result<Uint64> {
     let next_index = DEPOSITS
         .keys(store, None, None, Order::Descending)
         .next()
         .unwrap_or(Ok(0))?
         + 1;
 
-    DEPOSITS.save(store, next_index, &Deposit { sender, amount, recipient })?;
+    DEPOSITS.save(
+        store,
+        next_index,
+        &Deposit {
+            sender,
+            amount,
+            recipient,
+        },
+    )?;
 
     Ok(next_index.into())
 }

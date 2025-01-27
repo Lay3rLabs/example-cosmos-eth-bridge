@@ -1,25 +1,24 @@
 start-backend:
-  @just _start-cosmos > /dev/null 2>&1 &
-  @just _start-wavs > /dev/null 2>&1 &
+  @just stop-backend
+  @echo "starting Anvil..."
   @anvil > /dev/null 2>&1 &
+  @echo "setting up cosmos..."
+  @just _setup-cosmos > /dev/null 2>&1
+  @echo "starting cosmos..."
+  @just _run-cosmos > /dev/null 2>&1 &
+  @echo "waiting a few seconds before starting WAVS..."
+  @sleep 3
+  @wavs --home=./config > /dev/null &
+  @echo "done!"
 
 stop-backend:
   @-just _clean-cosmos > /dev/null 2>&1
   @-just _clean-wavs > /dev/null 2>&1
   @-killall -9 anvil > /dev/null 2>&1
 
-_start-wavs:
-  just _clean-wavs
-  wavs --home=./config &
-
 _clean-wavs:
   -killall -9 wavs
   rm -rf ./.wavs-data
-
-_start-cosmos:
-  just _clean-cosmos
-  just _setup-cosmos
-  just _run-cosmos
 
 _setup-cosmos:
   docker run --rm \

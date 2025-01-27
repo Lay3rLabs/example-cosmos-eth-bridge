@@ -1,5 +1,7 @@
 # Layer AVS Cosmos -> Eth Bridge Example
 
+_Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/WAVS/pull/323_
+
 ## One-time setup
 
 1. `npm install`

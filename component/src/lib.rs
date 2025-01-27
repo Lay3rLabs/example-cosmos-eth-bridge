@@ -41,7 +41,10 @@ impl Guest for Component {
                                     .parse()
                                     .map_err(|e| format!("Failed to parse amount: {}", e))?,
                                 sender,
-                                recipient: alloy_primitives::Address::parse_checksummed(recipient, None).map_err(|e| format!("Failed to parse recipient: {}", e))?,
+                                recipient: alloy_primitives::Address::parse_checksummed(
+                                    recipient, None,
+                                )
+                                .map_err(|e| format!("Failed to parse recipient: {}", e))?,
                             };
 
                             return Ok(response.abi_encode());
