@@ -63,6 +63,8 @@ This may take some time if you've never deployed before, but subsequent deployme
 just bridge
 ```
 
+You'll see it do some stuff and then print out your balance. 
+
 4. **Stop the backend**
 
 ```bash
@@ -73,3 +75,15 @@ just stop-backend
 
 Almost everyting is in the [justfiles](justfiles)
 A minimal cosmos client is in [cosmos-client](cosmos-client)
+
+Overall flow when running `just bridge` is:
+
+1. (user action) sending some `ulayer` to the Cosmos chain
+2. (cosmos chain) emits an event
+3. (wavs) picks up the event
+4. (wavs) passes the event data to the component
+5. (component) extracts the amount and recipient from the event data
+6. (component) encodes the info into an ethereum-friendly type (shared at compiletime w/ alloy sol! macro)
+7. (wavs) signs this output from the component, submits it to eigenlayer contract
+8. (ethereum: LayerServiceManager) verifies the operator and signature, calls LayerServiceHandler
+9. (ethereum: LayerServiceHandler + ERC20) extracts the data, mints tokens
