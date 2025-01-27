@@ -93,3 +93,9 @@ By design, this example does not use git submodules to pull in anything from WAV
 - The [Ethereum contract](./contracts/solidity/Submit.sol) naturally fulfills the interface by having a `handleAddPayload` function
 - The [WASI component](./component/src/lib.rs) does not need any of the sdk helpers to query a chain (the wit itself contains the event types)
 - While it would be nicer to just have one client that pulls in the wavs utils code, the combination of `wavs-cli`, a bit of shell script, and `just` does everything we need for deploying our services on eigenlayer
+
+# Security
+
+For the sake of keeping the example brief, this does not implement any security measures to prevent anyone from minting. That could easily done in a number of ways (e.g. requiring that the caller be the service manager, signing with a secret on the component side, etc.), but would distract from the point of this example.
+
+If you're using this repo for mainnet... erm.. don't :P
