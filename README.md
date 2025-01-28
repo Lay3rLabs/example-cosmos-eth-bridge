@@ -1,6 +1,6 @@
 # Layer AVS Cosmos -> Eth Bridge Example
 
-_Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/WAVS/pull/323_
+_Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/WAVS/pull/330_
 
 ## One-time setup
 
@@ -15,7 +15,7 @@ npm install
 Short version:
 
 ```bash
-git clone -b deploy-eigen-service-manager https://github.com/Lay3rLabs/WAVS.git ~/WAVS
+git clone -b cli-improvements https://github.com/Lay3rLabs/WAVS.git ~/WAVS
 
 cd ~/WAVS && just install-native ~/wavs-config ~/wavs-data
 ```
