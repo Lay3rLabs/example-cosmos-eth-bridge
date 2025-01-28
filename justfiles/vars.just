@@ -5,6 +5,7 @@ REPO_ROOT := `git rev-parse --show-toplevel`
 # CLI
 COSMOS_MNEMONIC := "couch surprise bamboo what penalty farm ocean company basic hire inject oak emerge shed dish round collect boat error reunion size holiday cup skill"
 ETHEREUM_MNEMONIC := "test test test test test test test test test test test junk"
+CLI_DEPLOYMENTS_FILEPATH := ".wavs-data/cli/deployments.json"
 
 # Backend
 

@@ -1,7 +1,8 @@
-use std::path::PathBuf;
+use std::{collections::BTreeMap, path::PathBuf};
 
 use anyhow::{anyhow, Context, Result};
 use layer_climb::prelude::*;
+use serde::Deserialize;
 use trigger_contract::entry::execute::ExecuteMsg;
 
 use crate::WORKSPACE_PATH;
@@ -60,8 +61,25 @@ impl Meta {
             Ok(s)
         }
 
-        let service_id =
-            read_to_string(WORKSPACE_PATH.join(".build-artifacts").join("service.id"))?;
+        #[derive(Deserialize)]
+        struct Deployments {
+            services: BTreeMap<String, serde_json::Value>,
+        }
+
+        let deployments = read_to_string(
+            WORKSPACE_PATH
+                .join(".wavs-data")
+                .join("cli")
+                .join("deployments.json"),
+        )?;
+
+        let service_id = serde_json::from_str::<Deployments>(&deployments)?
+            .services
+            .keys()
+            .next()
+            .cloned()
+            .ok_or(anyhow!("No service id found"))?;
+
         let trigger_address = read_to_string(
             WORKSPACE_PATH
                 .join(".build-artifacts")
