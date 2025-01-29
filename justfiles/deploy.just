@@ -17,9 +17,8 @@ _deploy-eigen-core:
 _deploy-eigen-handler:
     @rm -rf broadcast
     @forge script handler-deploy/DeployHandler.s.sol:Deploy \
-        --rpc-url http://localhost:8545 \
-        --keystore ./handler-deploy/foundry-keystore \
-        --password layer-anvil \
+        --rpc-url "{{ETHEREUM_RPC_URL}}" \
+        --sig "run(string calldata mnemonic)" "{{ETHEREUM_MNEMONIC}}" \
         --broadcast \
         --json 2>&1 > /dev/null
     @cat broadcast/DeployHandler.s.sol/31337/run-latest.json | jq -r '.transactions[0].contractAddress' | tr -d '\n' > "{{SUBMIT_HANDLER_ADDRESS_FILEPATH}}"

@@ -1,0 +1,4 @@
+{
+    "solidity.packageDefaultDependenciesDirectory": "submodules",
+    "solidity.monoRepoSupport": false
+}

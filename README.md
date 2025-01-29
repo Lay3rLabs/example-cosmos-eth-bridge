@@ -1,16 +1,11 @@
 # Layer AVS Cosmos -> Eth Bridge Example
 
+_Clone with --recursive or pull the submodules_
 _Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/WAVS/pull/330_
 
 ## One-time setup
 
-1. **install the openzeppelin contract dependencies**
-
-```bash
-npm install
-```
-
-2. **Follow the [Native Install](https://github.com/Lay3rLabs/WAVS/blob/main/docs/QUICKSTART.md#running-natively) instructions on WAVS if you haven't done so already.**
+1. **Follow the [Native Install](https://github.com/Lay3rLabs/WAVS/blob/main/docs/QUICKSTART.md#running-natively) instructions on WAVS if you haven't done so already.**
 
 Short version:
 
@@ -22,13 +17,13 @@ cd ~/WAVS && just install-native ~/wavs-config ~/wavs-data
 
 _Docker won't work out of the box here because we need WAVS to listen to a local Cosmos chain we'll be running_
 
-3. **Build all the contracts and components**
+2. **Build all the contracts and components**
 
 ```bash
 just build
 ```
 
-4. Install any other generic tooling that pops up... e.g. [just](https://github.com/casey/just), [foundry](https://book.getfoundry.sh/getting-started/installation), [docker](https://www.docker.com/) etc.
+3. Install any other generic tooling that pops up... e.g. [just](https://github.com/casey/just), [foundry](https://book.getfoundry.sh/getting-started/installation), [docker](https://www.docker.com/) etc.
 
 That's it!
 
@@ -88,7 +83,7 @@ Overall flow when running `just bridge` is:
 
 The only thing taken from the WAVS repo is the [WIT file](./component/wit/lay3r_avs@0.3.0.wit) which could easily come from a registry instead.
 
-By design, this example does not use git submodules to pull in anything from WAVS: 
+By design, this example does not pull in anything from WAVS: 
 
 - The [Ethereum contract](./contracts/solidity/Submit.sol) naturally fulfills the interface by having a `handleAddPayload` function
 - The [WASI component](./component/src/lib.rs) does not need any of the sdk helpers to query a chain (the wit itself contains the event types)

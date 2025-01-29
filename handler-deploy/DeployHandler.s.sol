@@ -1,22 +1,17 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-// Imports the "Script" contract from forge-std
 import "forge-std/Script.sol";
-
-// Import your Submit contract
 import "contracts/solidity/Submit.sol";
 
-// The script contract name is up to you; typically match the file.
 contract Deploy is Script {
-    function run() external {
-        // Start broadcasting using whichever account is active in your keystore
-        vm.startBroadcast();
+    function run(string calldata mnemonic) external {
+        (address deployerAddr,) = deriveRememberKey(mnemonic, 0);
 
-        // Deploy your contract
-        Submit submit = new Submit();
+        vm.startBroadcast(deployerAddr);
 
-        // Stop broadcasting
+        new Submit();
+
         vm.stopBroadcast();
     }
 }

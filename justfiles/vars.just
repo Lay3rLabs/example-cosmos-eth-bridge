@@ -3,12 +3,14 @@ ARCH := `uname -m`
 REPO_ROOT := `git rev-parse --show-toplevel`
 
 # CLI
-COSMOS_MNEMONIC := "couch surprise bamboo what penalty farm ocean company basic hire inject oak emerge shed dish round collect boat error reunion size holiday cup skill"
-ETHEREUM_MNEMONIC := "test test test test test test test test test test test junk"
 CLI_DEPLOYMENTS_FILEPATH := ".wavs-data/cli/deployments.json"
 
-# Backend
+# Ethereum
+ETHEREUM_MNEMONIC := "test test test test test test test test test test test junk"
+ETHEREUM_RPC_URL := "http://localhost:8545"
 
+# Cosmos 
+COSMOS_MNEMONIC := "couch surprise bamboo what penalty farm ocean company basic hire inject oak emerge shed dish round collect boat error reunion size holiday cup skill"
 COSMOS_ADDRESS := "wasm1t8xljxdcjnvtfqpfxu9phdmsmcrf3n9fftexjp" # Corresponds to COSMOS_MNEMONIC 
 COSMOS_DOCKER_NAME := "layer-example-wasmd"
 COSMOS_BLOCK_TIME := "200ms"
