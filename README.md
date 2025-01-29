@@ -1,11 +1,13 @@
 # Layer AVS Cosmos -> Eth Bridge Example
 
-_Clone with --recursive or pull the submodules_
-_Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/WAVS/pull/330_
+* _**Clone with --recursive or remember to pull the submodules**_
+
 
 ## One-time setup
 
 1. **Follow the [Native Install](https://github.com/Lay3rLabs/WAVS/blob/main/docs/QUICKSTART.md#running-natively) instructions on WAVS if you haven't done so already.**
+
+ _Currently depends on building WAVS from this PR: https://github.com/Lay3rLabs/WAVS/pull/330_
 
 Short version:
 
