@@ -2,7 +2,7 @@ use alloy_sol_macro::sol;
 use alloy_sol_types::SolValue;
 use bindings::{
     export,
-    lay3r::avs::layer_types::{
+    wavs::worker::layer_types::{
         TriggerData, TriggerDataCosmosContractEvent, TriggerDataEthContractEvent,
     },
     Guest, TriggerAction,
