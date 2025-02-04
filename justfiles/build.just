@@ -1,7 +1,7 @@
 build:
-    @just build-cosmwasm
     @just build-solidity
     @just build-wasi
+    @just build-cosmwasm
 
 build-cosmwasm:
     @if [ "{{ARCH}}" = "arm64" ]; then \
