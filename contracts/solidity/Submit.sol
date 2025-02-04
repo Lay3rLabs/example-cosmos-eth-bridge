@@ -12,7 +12,7 @@ contract Submit is ERC20 {
     constructor() ERC20("BridgedLayer", "ELYR") {
     }
 
-    function handleAddPayload(bytes calldata data, bytes calldata) external {
+    function handleSignedData(bytes calldata data, bytes calldata) external {
         BridgeDeposit memory deposit = abi.decode(data, (BridgeDeposit));
 
         _mint(deposit.recipient, deposit.amount);
