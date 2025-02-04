@@ -38,8 +38,8 @@ clap = {version = "4.5.27", features = ["derive"]}
 dotenvy = {version = "0.15.7", features = ["cli"]}
 
 # Cosmos
-layer-climb = { git = "https://github.com/Lay3rLabs/climb", tag = "v0.3.4" }
-layer-climb-cli = { git = "https://github.com/Lay3rLabs/climb", tag = "v0.3.4" }
+layer-climb = "0.3.6" 
+layer-climb-cli = "0.3.6" 
 cw-utils = "2.0.0"
 cosmwasm-std = "2.2.0"
 cw-storage-plus = "2.0.0"
