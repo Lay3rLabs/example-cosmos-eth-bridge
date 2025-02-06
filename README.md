@@ -81,13 +81,7 @@ Overall flow when running `just bridge` is:
 8. (ethereum: Eigenlayer-aware LayerServiceManager) verifies the operator and signature, calls LayerServiceHandler
 9. (ethereum: Vanilla LayerServiceHandler + ERC20) extracts the data, mints tokens
 
-The only thing taken from the WAVS repo is the [WIT file](./component/wit/lay3r_avs@0.3.0.wit) which could easily come from a registry instead.
-
-By design, this example does not pull in anything from WAVS: 
-
-- The [Ethereum contract](./contracts/solidity/Submit.sol) naturally fulfills the interface by having a `handleAddPayload` function
-- The [WASI component](./component/src/lib.rs) does not need any of the sdk helpers to query a chain (the wit itself contains the event types)
-- While it would be nicer to just have one client that pulls in the wavs utils code, the combination of `wavs-cli`, a bit of shell script, and `just` does everything we need for deploying our services on eigenlayer
+The only thing copy/pasted from WAVS repo is the solidity _interfaces_.
 
 # Security
 

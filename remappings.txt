@@ -1,2 +1,3 @@
 @openzeppelin/contracts/=submodules/openzeppelin-contracts/contracts/
 forge-std/=submodules/forge-std/src
+@layer/=contracts/solidity/layer
