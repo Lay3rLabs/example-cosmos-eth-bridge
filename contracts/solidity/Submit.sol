@@ -3,8 +3,8 @@ pragma solidity ^0.8.0;
 
 import {BridgeDeposit} from "./Types.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol"; 
-import {ILayerServiceManager} from "@layer/interfaces/ILayerServiceManager.sol";
-import {ILayerServiceHandler} from "@layer/interfaces/ILayerServiceHandler.sol";
+import {ILayerServiceManager} from "@wavs/interfaces/ILayerServiceManager.sol";
+import {ILayerServiceHandler} from "@wavs/interfaces/ILayerServiceHandler.sol";
 
 contract Submit is ERC20,ILayerServiceHandler {
     ILayerServiceManager private _serviceManager;
