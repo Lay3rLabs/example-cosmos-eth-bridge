@@ -10,9 +10,6 @@ out/
 cache/
 broadcast/
 
-# Node
-node_modules/
-
 # Secrets
 .env
 
