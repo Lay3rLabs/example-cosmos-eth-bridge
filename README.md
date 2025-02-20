@@ -1,13 +1,16 @@
-# Layer AVS Cosmos -> Eth Bridge Example
+# WAVS Cosmos -> Eth Bridge Example
 
-* _**Clone with --recursive or remember to pull the submodules**_
+# NOT PRODUCTION READY - FOR DEMO PURPOSES ONLY
 
+* _**Clone with --recursive or remember to pull the submodules for solidity dependencies**_
 
 ## One-time setup
 
-1. **Follow the [Native Install](https://github.com/Lay3rLabs/WAVS/blob/main/docs/QUICKSTART.md#running-natively) instructions on WAVS if you haven't done so already.**
+1. Copy `.env.example` to `.env` and set the right vars
 
-Short version:
+2. Install WAVS _natively_
+
+_Docker won't work out of the box here because we need WAVS to listen to a local Cosmos chain we'll be running_
 
 ```bash
 git clone https://github.com/Lay3rLabs/WAVS.git ~/WAVS
@@ -15,15 +18,13 @@ git clone https://github.com/Lay3rLabs/WAVS.git ~/WAVS
 cd ~/WAVS && just install-native ~/wavs-config ~/wavs-data
 ```
 
-_Docker won't work out of the box here because we need WAVS to listen to a local Cosmos chain we'll be running_
-
-2. **Build all the contracts and components**
+3. **Build all the contracts and components**
 
 ```bash
 just build
 ```
 
-3. Install any other generic tooling that pops up... e.g. [just](https://github.com/casey/just), [foundry](https://book.getfoundry.sh/getting-started/installation), [docker](https://www.docker.com/) etc.
+4. Install any other generic tooling that pops up... e.g. [just](https://github.com/casey/just), [foundry](https://book.getfoundry.sh/getting-started/installation), [docker](https://www.docker.com/) etc.
 
 That's it!
 
